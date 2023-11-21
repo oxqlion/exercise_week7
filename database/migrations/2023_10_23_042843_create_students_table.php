@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Extracurricular;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->string('postcode')->nullable();
             $table->string('photo')->nullable();
             $table->text('note')->nullable();
+            $table->foreignIdFor(Extracurricular::class);
             $table->timestamps();
         });
     }

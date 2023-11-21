@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
 {
@@ -28,4 +30,12 @@ class Student extends Model
         'photo',
         'note',
     ];
+
+    public function extracurricular() : HasOne {
+        return $this->hasOne(Extracurricular::class);
+    }
+
+    public function punyaExtra() : HasMany {
+        return $this->hasMany(StudentExtracurricular::class, 'student_id', 'id');
+    }
 }

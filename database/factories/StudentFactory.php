@@ -34,6 +34,7 @@ class StudentFactory extends Factory
             'postcode' => fake()->postcode,
             'photo' => 'default.jpg', // Provide a default image file name
             'note' => fake()->sentence,
+            'extracurricular_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

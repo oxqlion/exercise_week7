@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentExtracurricularController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StudentController::class,'index'])->name('index');
+
+Route::get('/writer/{writer}', [StudentController::class, 'show'])->name('show');
+
+Route::get('/weak', [StudentExtracurricularController::class, 'index'])->name('asd')->middleware('auth');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
