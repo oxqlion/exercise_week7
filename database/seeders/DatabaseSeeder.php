@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Satpam;
 use App\Models\Student;
 use App\Models\StudentExtracurricular;
+use App\Models\User;
 use Database\Factories\StudentExtracurricularFactory;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ExtracurricularSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        UserFactory::factory(5)->create();
+        User::factory(5)->create();
         StudentExtracurricular::factory(100)->create();
     }
 }
