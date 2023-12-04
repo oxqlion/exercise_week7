@@ -2,6 +2,7 @@
 
 @section('content')
     <div>
+        <a href="{{ route('add_student') }}" class="btn btn-primary mb-3">Add New Student</a>
         <table class="table">
             <tr>
                 <td>ID</td>

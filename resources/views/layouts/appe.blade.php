@@ -17,11 +17,12 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <title>Document</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,9 +31,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('asd') }}">Weak Table</a>
-                    </li>
+                    @if (Auth::user()->isAdmin())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.asd') }}">Weak Table</a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->isEditor())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.asd') }}">Weak Table</a>
+                        </li>
+                    @endif
                 @endauth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('index') }}">Home <span class="sr-only">(current)</span></a>
@@ -61,7 +69,7 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

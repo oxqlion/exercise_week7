@@ -16,11 +16,20 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [StudentController::class,'index'])->name('index');
-
+Route::get('/', [StudentController::class, 'index'])->name('index');
+Route::get('/add_student', [StudentController::class, 'create'])->name('add_student')->middleware('auth');
+Route::post('/student/store', [StudentController::class, 'store'])->name('store_student')->middleware('auth');
 Route::get('/writer/{writer}', [StudentController::class, 'show'])->name('show');
 
-Route::get('/weak', [StudentExtracurricularController::class, 'index'])->name('asd')->middleware('auth');
+
+Route::group([
+    'middleware' => 'admin',
+    'prefix' => 'admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/weak', [StudentExtracurricularController::class, 'index'])->name('asd');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

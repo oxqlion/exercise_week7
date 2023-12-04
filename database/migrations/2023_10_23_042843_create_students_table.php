@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('sosmed')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('gender')->nullable();
             $table->date('birthdate')->nullable();
             $table->string('nationality')->nullable();
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('postcode')->nullable();
             $table->string('photo')->nullable();
             $table->text('note')->nullable();
-            $table->foreignIdFor(Extracurricular::class);
+            $table->foreignIdFor(Extracurricular::class)->nullable()->default(null);
             $table->timestamps();
         });
     }

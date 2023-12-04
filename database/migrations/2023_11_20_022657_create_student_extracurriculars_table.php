@@ -18,11 +18,11 @@ return new class extends Migration
             // $table->foreignIdFor(Student::class);
             // $table->foreignIdFor(Extracurricular::class);
 
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('student_id')->nullable()->default(null);
             $table->foreign('student_id')-> references('id')->on('students')->onDelete('cascade');
-            $table->unsignedBigInteger('extracurricular_id');
+            $table->unsignedBigInteger('extracurricular_id')->nullable()->default(null);
             $table->foreign('extracurricular_id')-> references('id')->on('extracurriculars')->onDelete('cascade');
-            $table->unsignedBigInteger('satpam_id');
+            $table->unsignedBigInteger('satpam_id')->nullable()->default(null);
             $table->foreign('satpam_id')-> references('id')->on('satpams')->onDelete('cascade');
 
             $table->timestamps();
